@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2463 – Ann-May Martin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="page" id="top">
+
+        <header>
+            <div class="logo">
+                <h1 class="nom">
+                    <a href="index.html" aria-label="Ann-May Martin, accueil"><span class="v">A</span>n<span
+                            class="v">n</span>-M<span class="v">a</span>y<br>M<span class="v">a</span>rt<span
+                            class="v">i</span>n</a> <a class="square" href="index.html" aria-label="Revenir à la page d'entrée"></a>
+                </h1>
+            </div>
+
+            <nav>
+                <div class="nav-item">
+                    <button class="pill" type="button" aria-expanded="false" aria-controls="popup-apropos">À
+                        propos</button>
+                    <div class="popup" id="popup-apropos" hidden>
+                        <button class="popup__close" type="button" aria-label="Fermer"></button>
+                        <p>Étudiante en DN MADE Graphisme à l'ELMAD Auguste Renoir, je suis passionnée par l'édition et
+                            les narrations visuelles.</p>
+                        <p>Cette année, dans le cadre de mes études, je suis à la recherche d’un stage d’une durée de 3 mois, du 5 Avril au 27 Juin 2027.</p>
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <button class="pill" type="button" aria-expanded="false"
+                        aria-controls="popup-contact">Contact</button>
+                    <div class="popup" id="popup-contact" hidden>
+                        <button class="popup__close" type="button" aria-label="Fermer"></button>
+                        <p><a href="mailto:annmaymartin@gmail.com">annmaymartin@gmail.com</a></p>
+                        <p><a href="https://www.instagram.com/sego_am/" target="_blank" rel="noopener">ig : @sego_am</a>
+                        </p>
+                        <p><a href="cv.pdf" target="_blank" rel="noopener"><strong>CV</strong></a></p>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="layout">
+
+            <main>
+                <section class="slider" data-slider aria-label="Photos du projet araignee">
+                    <img class="slide is-active" src="images/araignee/ara_1.jpg" alt="araignee, photo 1">
+                    <img class="slide" src="images/araignee/ara_3.jpg" alt="araignee, photo 2">
+                    <img class="slide" src="images/araignee/ara_7.jpg" alt="araignee, photo 3">
+                    <img class="slide" src="images/araignee/ara_4.jpg" alt="araignee, photo 4">
+                    <img class="slide" src="images/araignee/ara_5.jpg" alt="araignee, photo 5">
+                    <img class="slide" src="images/araignee/ara_6.jpg" alt="araignee, photo 6">
+                    <img class="slide" src="images/araignee/ara_8.jpg" alt="araignee, photo 7">
+                    <img class="slide" src="images/araignee/ara_10.jpg" alt="araignee, photo 8">
+                    <img class="slide" src="images/araignee/ara_11.jpg" alt="araignee, photo 9">
+                    <img class="slide" src="images/araignee/ara_12.jpg" alt="araignee, photo 10">
+
+                    <button class="slider__btn slider__btn--prev" aria-label="Photo précédente"></button>
+                    <button class="slider__btn slider__btn--next" aria-label="Photo suivante"></button>
+                </section>
+
+                <div class="band">
+                    <img src="images/araignee/ara_18.jpg" alt="araignee, aperçu des pages">
+                </div>
+            </main>
+            <aside>
+                <div class="info-text">
+                    <h2 class="project-title">Araignée</h2>
+                    <p><strong>Technique : couture point droit / fil argenté / perle</strong></p>
+                    <p><strong>Format : 11x14cm</strong></p>
+                    <p><strong>Date : 2026</strong></p>
+
+                    <p class="gap">Objet éditorial sur le thème du minuscule et de l’araignée, qui explore la finesse de la toile à travers les étapes de sa construction et à l’aide de fil argenté.</p>
+                    <p>Le livre prend la forme d’un leporello, dont chaque page est composée de deux feuilles contrecollées. Ce procédé permet de dissimuler l’envers des pages, là où se trouvent l’envers des coutures. La reliure finale est une couture à point droit.</p>
+                </div>
+            </aside>
+        </div>
+
+    </div>
+
+    <div class="cursor" aria-hidden="true"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>

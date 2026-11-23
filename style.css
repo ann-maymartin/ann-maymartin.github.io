@@ -319,7 +319,7 @@ main {
     transition: opacity .4s ease;
 }
 
-/* Titre en pilule blanche */
+/* Titre pilule blanche */
 .image-text {
     grid-area: 1 / 1;
     position: relative;
@@ -468,9 +468,13 @@ aside {
     right: clamp(8px, 1vw, 14px);
 }
 
-.slider__btn svg {
-    width: 46%;
-    height: auto;
+.slider__btn--prev { --fleche: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 12H4M10 5l-7 7 7 7'/%3E%3C/svg%3E"); }
+.slider__btn--next { --fleche: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12h16M14 5l7 7-7 7'/%3E%3C/svg%3E"); }
+.slider__btn::after {
+    content: ""; width: 46%; aspect-ratio: 1;
+    background: currentColor;
+    -webkit-mask: var(--fleche) center / contain no-repeat;
+            mask: var(--fleche) center / contain no-repeat;
 }
 
 .slider:hover .slider__btn,
@@ -488,9 +492,6 @@ aside {
     }
 }
 
-/* tactile : toujours visibles */
-
-/* Photo du bas : une simple image */
 .band {
     margin-top: var(--gap);
 }
@@ -499,7 +500,6 @@ aside {
     height: auto;
 }
 
-/* Texte du projet */
 .project-title {
     margin: 0 0 .3em;
     font: italic 500 clamp(1.5rem, 2vw, 2.4rem)/1 var(--font-serif);
@@ -510,14 +510,14 @@ aside {
     font-style: italic;
 }
 
-/* ---------- PETIT ÉCRAN : 2 projets par ligne ---------- */
+/* PETIT ÉCRAN */
 @media (max-width: 900px) {
     .grid--3 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* ---------- MOBILE : header compact, 1 colonne, texte sous la galerie ---------- */
+/*  MOBILE : header compact, 1 colonne, texte */
 @media (max-width: 720px) {
     :root {
         --header-h: 68px;
@@ -566,12 +566,10 @@ aside {
     }
 }
 
-/* ---------- PAGE D'ENTRÉE (accueil) : un clic n'importe où ouvre le site ---------- */
 html.intro-on {
     overflow: hidden;
 }
 
-/* pas de défilement tant qu'on n'est pas entré */
 .no-intro #intro {
     display: none;
 }
@@ -592,9 +590,6 @@ html.intro-on {
     transform: translateY(-100%);
 }
 
-/* la page glisse vers le haut */
-
-/* Ronds : tous de la même taille, fond beige, ils se promènent (créés par intro.js) */
 .intro__dot {
     position: absolute;
     left: var(--x);
@@ -619,7 +614,6 @@ html.intro-on {
     }
 }
 
-/* Nom au centre : « Ann-May » en Alte Haas avec quelques lettres en Gambetta italique, « Martin » en Gambetta */
 .intro__name {
     position: absolute;
     z-index: 5;
@@ -649,7 +643,6 @@ html.intro-on {
     }
 }
 
-/* ---------- ACCESSIBILITÉ ---------- */
 @media (prefers-reduced-motion: reduce) {
 
     *,

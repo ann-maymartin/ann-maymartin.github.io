@@ -8,14 +8,12 @@
     const alea = (min, max) => min + Math.random() * (max - min);
     const touche = (a, b, m) => a.left < b.right + m && a.right > b.left - m && a.top < b.bottom + m && a.bottom > b.top - m;
 
-    /* ---------- ENTRER ---------- */
     function entrer() {
         if (intro.classList.contains('is-leaving')) return;
         intro.classList.add('is-leaving');
         try { sessionStorage.setItem('intro', '1'); } catch (e) { }
         document.documentElement.classList.remove('intro-on');          // débloque le défilement
         if (page) page.inert = false;
-        if (location.search) history.replaceState(null, '', location.pathname);   // enlève « ?intro » de l'adresse
         setTimeout(() => intro.remove(), 1100);                         // on retire la page d'entrée une fois partie
     }
     intro.addEventListener('click', entrer);

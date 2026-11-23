@@ -7,13 +7,12 @@
     <title>Ann-May Martin</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        try {
-            var nav = performance.getEntriesByType('navigation')[0];
-            var force = /[?&]intro(&|$)/.test(location.search);
-            if (!force && sessionStorage.getItem('intro') && !(nav && nav.type === 'reload')) document.documentElement.classList.add('no-intro');
-            else document.documentElement.classList.add('intro-on');
-        } catch (e) { document.documentElement.classList.add('intro-on'); }
-    </script>
+    try {
+        var nav = performance.getEntriesByType('navigation')[0];
+        if (sessionStorage.getItem('intro') && !(nav && nav.type === 'reload')) document.documentElement.classList.add('no-intro');
+        else document.documentElement.classList.add('intro-on');
+    } catch (e) { document.documentElement.classList.add('intro-on'); }
+</script>
     <noscript>
         <style>
             #intro {
@@ -38,8 +37,7 @@
                 <h1 class="nom">
                     <a href="#top" aria-label="Ann-May Martin, accueil"><span class="v">A</span>n<span
                             class="v">n</span>-M<span class="v">a</span>y<br>M<span class="v">a</span>rt<span
-                            class="v">i</span>n</a> <a class="square" href="index.html?intro"
-                        aria-label="Revenir à la page d'entrée"></a>
+                            class="v">i</span>n</a> <a class="square" href="index.html" aria-label="Revenir à la page d'entrée"></a>
                 </h1>
             </div>
 
@@ -51,8 +49,8 @@
                         <button class="popup__close" type="button" aria-label="Fermer"></button>
                         <p>Étudiante en DN MADE Graphisme à l'ELMAD Auguste Renoir, je suis passionnée par l'édition et
                             les narrations visuelles.</p>
-                        <p>Je porte une attention toute particulière pour la plasticité et les techniques d'impression.
-                        </p>
+                        <p>Cette année, dans le cadre de mes études, je suis à la recherche d’un stage d’une durée de 3
+                            mois, du 5 Avril au 27 Juin 2027.</p>
                     </div>
                 </div>
 
@@ -61,8 +59,9 @@
                         aria-controls="popup-contact">Contact</button>
                     <div class="popup" id="popup-contact" hidden>
                         <button class="popup__close" type="button" aria-label="Fermer"></button>
-                        <p><a href="mailto:annmaymartin@gmail.com">annmaymatin@gmail.com</a></p>
-                        <p><a href="https://www.instagram.com/sego_am/" target="_blank" rel="noopener">ig : @sego_am</a></p>
+                        <p><a href="mailto:annmaymartin@gmail.com">annmaymartin@gmail.com</a></p>
+                        <p><a href="https://www.instagram.com/sego_am/" target="_blank" rel="noopener">ig : @sego_am</a>
+                        </p>
                         <p><a href="cv.pdf" target="_blank" rel="noopener"><strong>CV</strong></a></p>
                     </div>
                 </div>
@@ -70,13 +69,12 @@
         </header>
         <main>
             <div class="grid grid--3">
-
-                <a class="image-container" href="monobloc.html">
-                    <img src="images/accueil/monobloc1.jpg" alt="Affiche Monobloc">
+                <a class="image-container" href="sauce.html">
+                    <img src="images/accueil/sauce1.jpg" alt="Hot Sauce" loading="lazy">
                     <span class="overlay" aria-hidden="true"></span>
-                    <p class="image-text">Affiche Monobloc</p>
+                    <p class="image-text">HOT SAUCE</p>
                 </a>
-
+                
                 <a class="image-container" href="fanzine.html">
                     <img src="images/accueil/fanz.jpg" alt="Fanzine 2463">
                     <span class="overlay" aria-hidden="true"></span>
@@ -89,28 +87,28 @@
                     <p class="image-text">Araignée</p>
                 </a>
 
-                <a class="image-container" href="kabane.html">
-                    <img src="images/accueil/kabane.jpg" alt="Kabane Café" loading="lazy">
-                    <span class="overlay" aria-hidden="true"></span>
-                    <p class="image-text">Kabane Café</p>
-                </a>
-
-                <a class="image-container" href="collage.html">
-                    <img src="images/accueil/collage1.jpg" alt="Collage" loading="lazy">
-                    <span class="overlay" aria-hidden="true"></span>
-                    <p class="image-text">à la recherche d'un…</p>
-                </a>
-
                 <a class="image-container" href="lettrine.html">
                     <img src="images/accueil/lettrine.jpg" alt="Lettrine S" loading="lazy">
                     <span class="overlay" aria-hidden="true"></span>
                     <p class="image-text">Lettrine S</p>
                 </a>
 
-                <a class="image-container" href="xmas.html">
-                    <img src="images/accueil/xmas.jpg" alt="Carte Xmas" loading="lazy">
+                 <a class="image-container" href="collage.html">
+                    <img src="images/accueil/collage1.jpg" alt="Collage" loading="lazy">
                     <span class="overlay" aria-hidden="true"></span>
-                    <p class="image-text">Carte Xmas</p>
+                    <p class="image-text">à la recherche d'un…</p>
+                </a> 
+
+                <a class="image-container" href="kabane.html">
+                    <img src="images/accueil/kabane.jpg" alt="Kabane Café" loading="lazy">
+                    <span class="overlay" aria-hidden="true"></span>
+                    <p class="image-text">Kabane Café</p>
+                </a>
+                
+                <a class="image-container" href="jde.html">
+                    <img src="images/accueil/jde.jpg" alt="Minuscule" loading="lazy">
+                    <span class="overlay" aria-hidden="true"></span>
+                    <p class="image-text">Minuscule</p>
                 </a>
 
                 <a class="image-container" href="choux.html">
@@ -119,10 +117,10 @@
                     <p class="image-text">Les Choux</p>
                 </a>
 
-                <a class="image-container" href="jde.html">
-                    <img src="images/accueil/jde.jpg" alt="Minuscule" loading="lazy">
+                <a class="image-container" href="xmas.html">
+                    <img src="images/accueil/xmas.jpg" alt="Carte Xmas" loading="lazy">
                     <span class="overlay" aria-hidden="true"></span>
-                    <p class="image-text">Minuscule</p>
+                    <p class="image-text">Carte Xmas</p>
                 </a>
 
                 <a class="image-container" href="ocean.html">
@@ -131,16 +129,16 @@
                     <p class="image-text">Océan</p>
                 </a>
 
-                <a class="image-container" href="sauce.html">
-                    <img src="images/accueil/sauce1.jpg" alt="Hot Sauce" loading="lazy">
-                    <span class="overlay" aria-hidden="true"></span>
-                    <p class="image-text">HOT SAUCE</p>
-                </a>
-
                 <a class="image-container" href="faitsdivers.html">
                     <img src="images/accueil/crime.jpg" alt="Affiche typographique faits divers" loading="lazy">
                     <span class="overlay" aria-hidden="true"></span>
                     <p class="image-text">Affiche Typographique</p>
+                </a>
+
+                <a class="image-container" href="monobloc.html">
+                    <img src="images/accueil/monobloc1.jpg" alt="Affiche Monobloc">
+                    <span class="overlay" aria-hidden="true"></span>
+                    <p class="image-text">Affiche Monobloc</p>
                 </a>
 
             </div>

@@ -2,7 +2,7 @@ const cursor = document.querySelector('.cursor');
 const hasMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 if (cursor && hasMouse) {
-    document.documentElement.classList.add('has-cursor');   // cache le curseur système sur les projets
+    document.documentElement.classList.add('has-cursor');
 
     let x = 0, y = 0, cx = 0, cy = 0;
 
@@ -18,7 +18,7 @@ if (cursor && hasMouse) {
 
     document.querySelectorAll('.image-container, .slider, .band').forEach((projet) => {
         projet.addEventListener('mouseenter', (e) => {
-            x = cx = e.clientX; y = cy = e.clientY;          // souris apparaît
+            x = cx = e.clientX; y = cy = e.clientY; // souris apparaît
             cursor.classList.add('is-visible');
         });
         projet.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
@@ -47,7 +47,7 @@ navItems.forEach((item) => {
 
     bouton.addEventListener('click', () => {
         const ouvrir = popup.hidden;
-        closeAll(item);                       // une seule fenêtre à la fois
+        closeAll(item); // une seule fenêtre à la fois
         popup.hidden = !ouvrir;
         bouton.setAttribute('aria-expanded', String(ouvrir));
     });
@@ -63,10 +63,6 @@ document.addEventListener('click', (e) => { if (!e.target.closest('.nav-item')) 
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
 
 
-/* =========================================================
-   Galerie d'une page projet : les flèches font défiler les photos
-   (boucle). Touches ← et → du clavier aussi.
-   ========================================================= */
 const slider = document.querySelector('[data-slider]');
 
 if (slider) {
@@ -74,7 +70,7 @@ if (slider) {
     let courant = 0;
 
     function afficher(i) {
-        courant = (i + photos.length) % photos.length;     // après la dernière, retour à la 1re
+        courant = (i + photos.length) % photos.length;
         photos.forEach((p, k) => p.classList.toggle('is-active', k === courant));
     }
 
@@ -87,18 +83,11 @@ if (slider) {
     });
 }
 
-/* Tirage aléatoire entre min et max */
 const alea = (min, max) => min + Math.random() * (max - min);
 
-/* =========================================================
-   Cercles décoratifs : positions tirées au hasard à chaque chargement,
-   jamais sur le texte (nom, boutons du header, texte de la colonne).
-   Pour changer ce qu'il faut éviter, modifie « eviter » ci-dessous.
-   ========================================================= */
 const zonesRonds = [
-    { zone: document.querySelector('aside'), eviter: '.info-text' },     // colonne de droite uniquement
-];
-const MARGE = 14;      // distance minimale avec le texte et les bords (px)
+    { zone: document.querySelector('aside'), eviter: '.info-text' },];
+const MARGE = 14;
 
 const touche = (a, b, marge) =>
     a.left < b.right + marge && a.right > b.left - marge && a.top < b.bottom + marge && a.bottom > b.top - marge;
@@ -108,7 +97,7 @@ function creerRonds() {
     if (window.matchMedia('(max-width: 720px)').matches) return;
     const { zone } = zonesRonds[0];
     if (!zone) return;
-    const total = 2 + Math.floor(Math.random() * 2);                  // 2 ou 3
+    const total = 2 + Math.floor(Math.random() * 2);
     for (let k = 0; k < total; k++) {
         const rond = document.createElement('span');
         rond.className = 'dot';
@@ -183,4 +172,10 @@ document.querySelectorAll('.nom').forEach((nom) => {
         });
     };
     envelopper(nom);
+});
+
+document.querySelectorAll('.square').forEach((carre) => {
+    carre.addEventListener('click', () => {
+        try { sessionStorage.removeItem('intro'); } catch (e) {}
+    });
 });
