@@ -8,7 +8,6 @@ if (cursor && hasMouse) {
 
     window.addEventListener('mousemove', (e) => { x = e.clientX; y = e.clientY; });
 
-    //rond
     (function follow() {
         cx += (x - cx) * 0.25;
         cy += (y - cy) * 0.25;
@@ -18,13 +17,12 @@ if (cursor && hasMouse) {
 
     document.querySelectorAll('.image-container, .slider, .band').forEach((projet) => {
         projet.addEventListener('mouseenter', (e) => {
-            x = cx = e.clientX; y = cy = e.clientY; // souris apparaît
+            x = cx = e.clientX; y = cy = e.clientY;
             cursor.classList.add('is-visible');
         });
         projet.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
     });
 
-    //curseur normal
     document.querySelectorAll('.slider__btn').forEach((btn) => {
         btn.addEventListener('mouseenter', () => cursor.classList.remove('is-visible'));
         btn.addEventListener('mouseleave', () => cursor.classList.add('is-visible'));
@@ -63,25 +61,63 @@ document.addEventListener('click', (e) => { if (!e.target.closest('.nav-item')) 
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
 
 
-const slider = document.querySelector('[data-slider]');
+let galerieActive = null;
 
-if (slider) {
-    const photos = [...slider.querySelectorAll('.slide')];
+document.querySelectorAll('[data-slider]').forEach((slider) => {
+    const photos = Array.from(slider.querySelectorAll('.slide'));
+
+    if (photos.length === 0) return;
+
+    const prev = slider.querySelector('.slider__btn--prev');
+    const next = slider.querySelector('.slider__btn--next');
+
     let courant = 0;
 
-    function afficher(i) {
-        courant = (i + photos.length) % photos.length;
-        photos.forEach((p, k) => p.classList.toggle('is-active', k === courant));
+    function aller(pas) {
+        courant = (courant + pas + photos.length) % photos.length;
+
+        photos.forEach((photo, index) => {
+            photo.classList.toggle('is-active', index === courant);
+        });
     }
 
-    slider.querySelector('.slider__btn--prev').addEventListener('click', () => afficher(courant - 1));
-    slider.querySelector('.slider__btn--next').addEventListener('click', () => afficher(courant + 1));
+    if (prev) {
+        prev.addEventListener('click', () => aller(-1));
+    }
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') afficher(courant - 1);
-        if (e.key === 'ArrowRight') afficher(courant + 1);
+    if (next) {
+        next.addEventListener('click', () => aller(1));
+    }
+
+    // Activation du carrousel courant
+    if (!galerieActive) {
+        galerieActive = aller;
+    }
+
+    ['mouseenter', 'pointerdown', 'focusin'].forEach((evt) => {
+        slider.addEventListener(evt, () => {
+            galerieActive = aller;
+        });
     });
-}
+});
+
+document.addEventListener('keydown', (e) => {
+    if (!galerieActive) return;
+
+    if (e.key === 'ArrowLeft') {
+        galerieActive(-1);
+    }
+
+    if (e.key === 'ArrowRight') {
+        galerieActive(1);
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (!galerieActive) return;
+    if (e.key === 'ArrowLeft') galerieActive(-1);
+    if (e.key === 'ArrowRight') galerieActive(1);
+});
 
 const alea = (min, max) => min + Math.random() * (max - min);
 
@@ -92,7 +128,6 @@ const MARGE = 14;
 const touche = (a, b, marge) =>
     a.left < b.right + marge && a.right > b.left - marge && a.top < b.bottom + marge && a.bottom > b.top - marge;
 
-/* Crée 2 ou 3 ronds dans la colonne de droite (pas de ronds sur l'accueil ni sur mobile). */
 function creerRonds() {
     if (window.matchMedia('(max-width: 720px)').matches) return;
     const { zone } = zonesRonds[0];
@@ -115,9 +150,8 @@ function placerRonds(seulementConflits) {
 
         zone.querySelectorAll(':scope > .dot').forEach((rond) => {
             const d = rond.offsetWidth;
-            if (!d) return;                                         // rond masqué
+            if (!d) return;
 
-            // Après un redimensionnement : on ne déplace que les ronds qui touchent le texte
             if (seulementConflits) {
                 const r = rond.getBoundingClientRect();
                 if (!interdits.some((f) => touche(r, f, MARGE))) { poses.push(r); return; }
@@ -135,28 +169,22 @@ function placerRonds(seulementConflits) {
                     return;
                 }
             }
-            rond.style.visibility = 'hidden';                       // aucune place libre : on le cache
+            rond.style.visibility = 'hidden';
         });
     });
 }
 
 creerRonds();
 placerRonds(false);
-document.fonts.ready.then(() => placerRonds(true));                // les polices changent la taille du texte
+document.fonts.ready.then(() => placerRonds(true));
 let minuteur;
 window.addEventListener('resize', () => { clearTimeout(minuteur); minuteur = setTimeout(() => placerRonds(true), 200); });
 
-
-/* =========================================================
-   Nom animé : chaque lettre devient un <span class="l"> pour que
-   la police change lettre par lettre au survol (voir .nom dans le CSS).
-   Pour désactiver l'effet, enlève class="nom" des balises du nom.
-   ========================================================= */
 document.querySelectorAll('.nom').forEach((nom) => {
     nom.setAttribute('aria-label', nom.textContent.replace(/\s+/g, ' ').trim());
     const envelopper = (parent) => {
         [...parent.childNodes].forEach((n) => {
-            if (n.nodeType === 3) {                                   // texte brut : une lettre = un span
+            if (n.nodeType === 3) {
                 const frag = document.createDocumentFragment();
                 for (const ch of n.textContent) {
                     if (/\s/.test(ch)) { frag.append(ch); continue; }
@@ -167,7 +195,7 @@ document.querySelectorAll('.nom').forEach((nom) => {
                 }
                 n.replaceWith(frag);
             } else if (n.nodeType === 1 && !n.matches('.v, .l, .square, br')) {
-                envelopper(n);                                        // ex. <span class="line">
+                envelopper(n);
             }
         });
     };

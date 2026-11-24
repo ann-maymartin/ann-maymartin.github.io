@@ -3,7 +3,7 @@
     if (!intro || document.documentElement.classList.contains('no-intro')) return;
 
     const page = document.querySelector('.page');
-    if (page) page.inert = true;                       // le site reste inaccessible tant qu'on n'est pas entré
+    if (page) page.inert = true;
 
     const alea = (min, max) => min + Math.random() * (max - min);
     const touche = (a, b, m) => a.left < b.right + m && a.right > b.left - m && a.top < b.bottom + m && a.bottom > b.top - m;
@@ -12,19 +12,18 @@
         if (intro.classList.contains('is-leaving')) return;
         intro.classList.add('is-leaving');
         try { sessionStorage.setItem('intro', '1'); } catch (e) { }
-        document.documentElement.classList.remove('intro-on');          // débloque le défilement
+        document.documentElement.classList.remove('intro-on');
         if (page) page.inert = false;
-        setTimeout(() => intro.remove(), 1100);                         // on retire la page d'entrée une fois partie
+        setTimeout(() => intro.remove(), 1100);
     }
     intro.addEventListener('click', entrer);
     intro.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); entrer(); } });
 
-    /* ---------- RONDS : même taille, répartis au hasard (hors du nom), chacun flotte à son rythme ---------- */
     function decor() {
         const W = window.innerWidth, H = window.innerHeight;
         const nom = intro.querySelector('.intro__name').getBoundingClientRect();
 
-        const sonde = document.createElement('span');                  // mesure la taille d'un rond (--dot-size)
+        const sonde = document.createElement('span');
         sonde.className = 'intro__dot';
         intro.appendChild(sonde);
         const d = sonde.offsetWidth;
@@ -50,5 +49,5 @@
         }
     }
 
-    document.fonts.ready.then(decor);                  // on attend les polices pour connaître la vraie taille du nom
+    document.fonts.ready.then(decor);
 })();

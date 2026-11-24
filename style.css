@@ -18,13 +18,6 @@
     font-display: swap;
 }
 
-@font-face {
-    font-family: "Gambetta";
-    src: url("font/Gambetta-Medium.otf") format("opentype");
-    font-style: normal;
-    font-display: swap;
-}
-
 :root {
     --bg: #F1F0E6;
     --white: #FFFFFF;
@@ -34,9 +27,7 @@
     --font-serif: "Gambetta", Georgia, serif;
 
     --header-h: clamp(76px, 6.8vw, 128px);
-    /* hauteur du header */
     --side: clamp(16px, 2.3vw, 42px);
-    /* marges latérales */
     --gap: clamp(12px, 1.6vw, 28px);
     --dot-size: clamp(12px, 1.3vw, 22px);
     --gs: 1.13;
@@ -319,7 +310,6 @@ main {
     transition: opacity .4s ease;
 }
 
-/* Titre pilule blanche */
 .image-text {
     grid-area: 1 / 1;
     position: relative;
@@ -510,14 +500,12 @@ aside {
     font-style: italic;
 }
 
-/* PETIT ÉCRAN */
 @media (max-width: 900px) {
     .grid--3 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/*  MOBILE : header compact, 1 colonne, texte */
 @media (max-width: 720px) {
     :root {
         --header-h: 68px;
@@ -655,4 +643,17 @@ html.intro-on {
     html {
         scroll-behavior: auto;
     }
+}
+
+.site-footer {
+    padding: 20px 25px;
+    font-family: "AlteHaasGrotesk";
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.site-footer p {
+    margin:0 0 2px;
+    text-align: center;
+    color: rgb(72, 72, 72);  
 }
